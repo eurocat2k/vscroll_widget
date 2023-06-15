@@ -48,9 +48,11 @@ The example above demonstrates that the widget were instantiated with *min*, *ma
 The container div - **div.box** set to draggable - to demonstrate **.vscroll** widget usage even in moving container DOM element at arbitrary viewport location.
 
 ![div.box draggable container with CFL label and input](image01.png)
+
 **Fig01: div.box draggable container with CFL label and input**
 
 ![Alt text](image02.png)
+
 **Fig02: opened dropdown scrollable menu with selected value in visible focus**
 
 If mouse right button pressed no selection happens, the dropdown window closes, static value will be not changed.
