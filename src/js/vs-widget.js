@@ -10,6 +10,7 @@
             max: 660,
             maxValue: 660,
             step: 5,
+            defaultStep: 5,
             minStep: 1,
             maxStep: 10,
             selected: false,
@@ -90,6 +91,7 @@
         },
         _roundInt: function(v, n) {
             try {
+                console.log({v, n});
                 let _v, _n, _low, _high;
                 if (typeof v !== "undefined" && typeof n !== "undefined") {
                     if (Number.isFinite(v) && Number.isFinite(n)) {
@@ -159,8 +161,12 @@
                     if (/step/.test(key)) {
                         if (Number.isFinite(value)) {
                             let _v = value + .5 >> 0;   // to be sure it is Integer
-                            if (_v >= self.options.minStep && _v < self.options.maxStep) {
-                                self.options.step = _v;
+                            if (_v >= self.options.minStep && _v <= self.options.maxStep) {
+
+                                let _low = Math.floor(_v / self.options.defaultStep) * self.options.defaultStep;
+                                let _upp = Math.ceil(_v / self.options.defaultStep) * self.options.defaultStep;
+                                _low = _low < 1 ? 1 : _low; // avoid divide by zero fault
+                                self.options.step = Math.abs(_v - _low) < Math.abs(_v - _upp) ? _low : _upp;
                             } else {
                                 self.options.step = self.options.maxStep;
                             }
@@ -203,7 +209,7 @@
                     $scrollTo = $stripList.find('.vs_selected');
                     $selected = $('.cfl_vscontainer').find('.vs_selected').index();
                     if ($selected < 0) {
-                        let _newValue = _RoundNearestStep(self.options.selected);
+                        let _newValue = self._roundInt(self.options.selected, self.options.step);
                         self.options.selected = _newValue;
                         $elem = $stripList.find(`div:contains(${_newValue})`);
                         let index = $elem.index() + 1;
