@@ -59,4 +59,6 @@ However mouse left click on any - *except selected* - value will be updating the
 
 The scrolling feature attached to ***mousewheel*** Event.
 
+- [ ] **TODO! :** implement custom events and their handlers into the widget.
+
 *-zg-* **15.06.23**
