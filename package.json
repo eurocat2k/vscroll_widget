@@ -1,0 +1,15 @@
+{
+  "name": "vscroll_new",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jquery": "^3.7.0",
+    "jquery-ui": "^1.13.2"
+  }
+}

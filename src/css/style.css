@@ -1,0 +1,132 @@
+/*
+*  html5resetcss
+*/
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}
+body{line-height:1;font-family: Arial, Helvetica, sans-serif;}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}
+nav ul{list-style:none}
+blockquote,q{quotes:none}
+blockquote:before,blockquote:after,q:before,q:after{content:none}
+a{margin:0;padding:0;font-size:100%;vertical-align:baseline;background:transparent}
+ins{background-color:#ff9;color:#000;text-decoration:none}
+mark{background-color:#ff9;color:#000;font-style:italic;font-weight:bold}
+del{text-decoration:line-through}
+abbr[title],dfn[title]{border-bottom:1px dotted;cursor:help}
+table{border-collapse:collapse;border-spacing:0}
+hr{display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0;padding:0}
+input,select{vertical-align:middle}
+
+:root {
+    --vsFontFamily: Arial, Helvetica, sans-serif;
+    --vsFontSize: 14px;
+    --vsFontWeight: 500;
+    --vsFontWeightBold: 600;
+    --vsFontWeightThin: 400;
+    --vsItemHeight: 16px;
+    --vsItemWidth: 40px;
+    --vsItemBGColor: rgba(228, 227, 220, .9);
+    --vsItemColor: rgb(0, 0, 0);
+    --vsItemBGColorSelected: rgb(0, 117, 226);
+    --vsItemColorSelected: rgb(253, 253, 250);
+    --vsItemBGColorHover: rgb(250, 212, 0);
+    --vsItemColorHover: rgb(38, 43, 53);
+    --vsItemBGColorHoverSelected: rgb(0, 129, 50);
+    --vsItemColorHoverSelected: rgb(255, 255, 255);
+    --vsVisibleItems: 7;
+    --vsStripBG: rgba(228, 227, 220, .9);
+}
+.wrapper {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+.box {
+    position: absolute;
+    left: 25%;
+    top: 25%;
+    width: 160px;
+    height: 60px;
+    background-color: aquamarine;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cfl_main_container {
+    flex: 1;
+    cursor: default;
+    display: flex;
+    flex-direction: row;
+    column-gap: 5px;
+}
+.cfl_label {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    font-size: var(--vsFontSize);
+    font-weight: var(--vsFontWeight);
+}
+.cfl_container {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+}
+.cfl_static_value {
+    position: absolute;
+    width: var(--vsItemWidth);
+    height: var(--vsItemHeight);
+    background-color: rgb(116, 42, 0);
+    font-size: var(--vsFontSize);
+    font-weight: var(--vsFontWeightBold);
+    color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cfl_vscontainer {
+    flex: 1;
+    position: absolute;
+    /* top: calc(2.5 * var(--vsItemHeight)); */
+    border: solid 1px black;
+    width: var(--vsItemWidth);
+    height: calc(var(--vsVisibleItems) * var(--vsItemHeight));
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+.cfl_vstrip {
+    width: var(--vsItemWidth);
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* gap: 1px; */
+    background-color: var(--vsStripBG);
+}
+.cfl_vsitem {
+    display: flex;
+    justify-content: center;
+    width: var(--vsItemWidth);
+    height: var(--vsItemHeight);
+    background-color: var(--vsItemBGColor);
+    font-size: var(--vsFontSize);
+    font-weight: var(--vsFontWeight);
+}
+.cfl_vsitem:hover {
+    background-color: var(--vsItemBGColorHover);
+    color: var(--vsItemColorHover);
+}
+.cfl_vsitem.vs_selected {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: var(--vsItemWidth);
+    height: var(--vsItemHeight);
+    background-color: var(--vsItemBGColorSelected);
+    color: var(--vsItemColorSelected);
+}
+.cfl_vsitem.vs_selected:hover {
+    background-color: var(--vsItemBGColorHoverSelected);
+    color: var(--vsItemColorHoverSelected);
+}
