@@ -18,6 +18,7 @@ The **index.html** contains the generic layout of the DOM tree - to demonstrate 
 ```javascript
     // app.js
     $vscroll = $('.cfl_main_container').vscroll({min: 280, max: 400, selected: 340});
+    $vscroll.on("cfl.changed", function(ev, value) { console.log(`New cfl: ${value}`) });
     $vscroll.vscroll({selected: 390});
     $box = $('.box');
     $box.draggable();
@@ -61,6 +62,6 @@ However mouse left click on any - *except selected* - value will be updating the
 
 The scrolling feature attached to ***mousewheel*** Event.
 
-- [ ] **TODO! :** implement custom events and their handlers into the widget.
+- [x] **TODO! :** implement custom events and their handlers into the widget.
 
 *-zg-* **15.06.23**
