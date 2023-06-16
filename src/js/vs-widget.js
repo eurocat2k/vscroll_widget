@@ -19,10 +19,13 @@
             focused: 'first',   // or 'last'
             testAlt: 343,
             autoOpen: false,
+            // callbacks
+            cbSelected: false,
             // autoOpen: true,
         },
         widgetName: "vscroll",
         version: "1.0.0",
+        _handlers: {},
         // constructor
         _create: function() {
             // if anything DOM remained in the parent, clean up everything and recreate DOM structure
@@ -67,16 +70,25 @@
                 // console.log(`context menu detected`);
                 return false;
             });
-            $('.cfl_static_value').on('click', function(e) {
-                e.preventDefault();
-                self.open();
+            self._on({
+                // click on static value event handler
+                "click .cfl_static_value": function(ev) {
+                    ev.preventDefault();
+                    self.open();
+                },
+                // click on list item event handler
+                "click .cfl_vsitem": function(ev) {
+                    // console.log(self.element);
+                    self.element.trigger("cfl.changed", self.options.selected);
+                    // self._handlers.changeEventHandler = self._changeEventCB(ev, self.options.selected);
+                    self._handlers.changeEventHandler = self.options.cbSelected ? self.options.cbSelected : self._changeEventCB(ev, self.options.selected);
+                },
             });
-            self._on(self.element, {
-                "change": function(e) {
-                    console.log({e});
-                }
-            });
+            self.element.on("cfl.changed", this._handlers.changeEventHandler);
         },
+        //
+        _changeEventCB: function(ev, data) { return data; },
+        //
         _init: function() {
             let self = this;
             let root = self.element[0]; // root element
@@ -125,7 +137,7 @@
             // console.log(`_setOption called: key = ${key} value = ${value}`);
             let self = this;
             try {
-                if (/min|max|visible|step|selected|delay|testAlt/.test(key)) {
+                if (/min|max|visible|step|selected|delay|testAlt|cbSelected/.test(key)) {
                     // Validate and adjust as needed
                     if (/min/.test(key)) {
                         if (Number.isFinite(value)) {
@@ -188,6 +200,15 @@
                             self.options.selected = _v >= self.options.minValue && _v <= self.options.maxValue ? _v : self.options.minValue;
                         } else {
                             throw new Error(`testAlt value is not Number!`);
+                        }
+                    }
+                    if (/cbSelected/.test(key)) {
+                        try {
+                            if (typeof value === "function") {
+                                self.options.cbSelected = value;
+                            }
+                        } catch (error) {
+                            throw new Error(`option argument is ${typeof value} and not "function"`);
                         }
                     }
                 }
